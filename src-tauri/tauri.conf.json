@@ -1,0 +1,78 @@
+{
+    "build": {
+        "beforeDevCommand": "npm run dev:react",
+        "beforeBuildCommand": "npm run build",
+        "devPath": "../dist",
+        "distDir": "../dist"
+    },
+    "package": {
+        "productName": "Leilos Launcher",
+        "version": "1.0.6"
+    },
+    "tauri": {
+        "allowlist": {
+            "all": true,
+            "protocol": {
+                "all": true,
+                "assetScope": [
+                    "*/**"
+                ]
+            },
+            "http": {
+                "all": true,
+                "scope": [
+                    "https://leilos.leilos.qzz.io/*",
+                    "https://cdn.leilos.qzz.io/*",
+                    "http://leilos.leilos.qzz.io/*",
+                    "http://leilos.leilos.qzz.io:4080/*",
+                    "http://leilos.leilos.qzz.io:7777/*"
+                ]
+            },
+            "fs": {
+                "all": true,
+                "scope": [
+                    "*/**"
+                ]
+            }
+        },
+        "windows": [
+            {
+                "fullscreen": false,
+                "maximizable": false,
+                "resizable": true,
+                "title": "Leilos Launcher",
+                "decorations": false,
+                "center": true,
+                "transparent": true,
+                "minWidth": 900,
+                "minHeight": 600,
+                "width": 1100,
+                "height": 700
+            }
+        ],
+        "security": {
+            "csp": null
+        },
+        "bundle": {
+            "active": true,
+            "targets": "all",
+            "identifier": "site.leilos",
+            "icon": [
+                "icons/32x32.png",
+                "icons/128x128.png",
+                "icons/128x128@2x.png",
+                "icons/icon.icns",
+                "icons/icon.ico"
+            ],
+            "resources": [
+                "dlls"
+            ],
+            "windows": {
+                "certificateThumbprint": null,
+                "digestAlgorithm": "sha256",
+                "timestampUrl": ""
+            },
+            "externalBin": []
+        }
+    }
+}
