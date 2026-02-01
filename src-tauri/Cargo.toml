@@ -27,6 +27,7 @@ rfd = "0.10"
 winapi = { version = "0.3", features = ["processthreadsapi", "winbase", "handleapi", "errhandlingapi", "synchapi", "winuser", "psapi", "memoryapi", "libloaderapi", "winnt"] }
 widestring = "1.0"
 sysinfo = "0.29"
+discord-rich-presence = "0.2.4"
 
 [features]
 # by default Tauri runs in production mode

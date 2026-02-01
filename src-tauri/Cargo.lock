@@ -478,7 +478,7 @@ checksum = "d38f2da7a0a2c4ccf0065be06397cc26a81f4e528be095826eee9d4adbb8c60f"
 dependencies = [
  "byteorder",
  "fnv",
- "uuid",
+ "uuid 1.19.0",
 ]
 
 [[package]]
@@ -887,6 +887,19 @@ dependencies = [
  "libc",
  "redox_users",
  "winapi",
+]
+
+[[package]]
+name = "discord-rich-presence"
+version = "0.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a75db747ecd252c01bfecaf709b07fcb4c634adf0edb5fed47bc9c3052e7076b"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "serde_repr",
+ "uuid 0.8.2",
 ]
 
 [[package]]
@@ -2177,6 +2190,7 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 name = "leilos-launcher"
 version = "1.0.6"
 dependencies = [
+ "discord-rich-presence",
  "futures-util",
  "reqwest",
  "rfd",
@@ -4222,7 +4236,7 @@ dependencies = [
  "serde",
  "tao-macros",
  "unicode-segmentation",
- "uuid",
+ "uuid 1.19.0",
  "windows 0.39.0",
  "windows-implement 0.39.0",
  "x11-dl",
@@ -4311,7 +4325,7 @@ dependencies = [
  "thiserror 1.0.69",
  "tokio",
  "url",
- "uuid",
+ "uuid 1.19.0",
  "webkit2gtk",
  "webview2-com",
  "windows 0.39.0",
@@ -4358,7 +4372,7 @@ dependencies = [
  "tauri-utils",
  "thiserror 1.0.69",
  "time",
- "uuid",
+ "uuid 1.19.0",
  "walkdir",
 ]
 
@@ -4392,7 +4406,7 @@ dependencies = [
  "tauri-utils",
  "thiserror 1.0.69",
  "url",
- "uuid",
+ "uuid 1.19.0",
  "webview2-com",
  "windows 0.39.0",
 ]
@@ -4411,7 +4425,7 @@ dependencies = [
  "raw-window-handle",
  "tauri-runtime",
  "tauri-utils",
- "uuid",
+ "uuid 1.19.0",
  "webkit2gtk",
  "webview2-com",
  "windows 0.39.0",
@@ -4897,6 +4911,15 @@ name = "utf8_iter"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
+
+[[package]]
+name = "uuid"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
+dependencies = [
+ "getrandom 0.2.17",
+]
 
 [[package]]
 name = "uuid"
@@ -6060,7 +6083,7 @@ dependencies = [
  "serde_repr",
  "tracing",
  "uds_windows",
- "uuid",
+ "uuid 1.19.0",
  "windows-sys 0.61.2",
  "winnow 0.7.14",
  "zbus_macros",

@@ -23,11 +23,8 @@
                 "scope": [
                     "https://leilos.leilos.qzz.io/*",
                     "https://cdn.leilos.qzz.io/*",
-                    "http://leilos.leilos.qzz.io/*",
-                    "http://leilos.leilos.qzz.io:4080/*",
-                    "http://leilos.leilos.qzz.io:7777/*",
-                    "http://79.116.51.74:80/*",
-                    "http://79.116.51.74:7777/*"
+                    "http://launcher.leilos.qzz.io:80/*",
+                    "http://launcher.leilos.qzz.io:8443/*"
                 ]
             },
             "fs": {
