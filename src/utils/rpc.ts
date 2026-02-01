@@ -1,0 +1,62 @@
+import { invoke } from '@tauri-apps/api';
+
+export interface RpcConfig {
+  client_id: string;
+  state: string;
+  details: string;
+  large_image: string;
+  large_text: string;
+  small_image: string;
+  small_text: string;
+  button_1_text: string;
+  button_1_url: string;
+  button_2_text: string;
+  button_2_url: string;
+  enable_timer: boolean;
+}
+
+export async function RpcStart(config?: Partial<RpcConfig>): Promise<void> {
+  const defaultConfig: RpcConfig = {
+    // To change "Erbium launcher" to "Leilos", you must create a new Application at https://discord.com/developers/applications
+    // and replace this client_id with your own.
+    client_id: "1461856325716676679",
+    state: "In Launcher",
+    details: "Leilos",
+    large_image: "logo",
+    large_text: "Leilos Launcher",
+    small_image: "none",
+    small_text: "none",
+    button_1_text: "none",
+    button_1_url: "none",
+    button_2_text: "none",
+    button_2_url: "none",
+    enable_timer: true,
+  };
+
+  try {
+    await invoke("start_rpc", {
+      config: { ...defaultConfig, ...config },
+    });
+    console.log("Discord RPC started");
+  } catch (error) {
+    console.error("Failed to start Discord RPC:", error);
+  }
+}
+
+export async function RpcStop(): Promise<void> {
+  try {
+    await invoke("stop_rpc");
+    console.log("RPC stopped");
+  } catch (error) {
+    console.error("Failed to stop RPC:", error);
+  }
+}
+
+export async function RpcClear(): Promise<void> {
+  try {
+    await invoke("clear_rpc");
+    console.log("RPC cleared");
+  } catch (error) {
+    console.error("Failed to clear RPC:", error);
+  }
+}

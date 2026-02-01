@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal';
 import { useUserStore } from './stores/userStore';
 import { useConfigStore } from './stores/configStore';
 import { useGameStore } from './stores/gameStore';
+import { RpcStart } from './utils/rpc';
 import './styles/index.css';
 
 interface DownloadState {
@@ -42,6 +43,8 @@ const App: React.FC = () => {
     };
 
     useEffect(() => {
+        RpcStart().catch(console.error);
+
         const fetchData = async () => {
             try {
                 const currentVersion = await getVersion();
@@ -295,7 +298,9 @@ const App: React.FC = () => {
                                 
                                 <div className="flex gap-3">
                                     <button onClick={() => open('https://discord.gg/rNtPqQyBwg')} className="p-3 bg-white/5 rounded-xl hover:bg-[#5865F2]/20 hover:text-[#5865F2] transition-all border border-white/5 hover:border-[#5865F2]/30 group cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"></path></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="transition-transform group-hover:scale-110">
+                                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/>
+                                        </svg>
                                     </button>
                                     <button onClick={() => open('https://github.com/leilosFN')} className="p-3 bg-white/5 rounded-xl hover:bg-white/20 hover:text-white transition-all border border-white/5 hover:border-white/30 group cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -312,61 +317,66 @@ const App: React.FC = () => {
             case 'download':
                 return (
                     <div className="max-w-5xl mx-auto pt-10 animate-fade-in p-6">
-                        <div className="bg-[#151921] rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
-                            <div className="flex flex-col md:flex-row">
-                                {/* Left Side: Cover Art */}
-                                <div className="w-full md:w-80 h-96 relative group">
-                                    <div className="absolute inset-0 bg-[url('https://cdn.leilos.qzz.io/media/logo.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#151921] to-transparent md:bg-gradient-to-r"></div>
+                        <div className="helios-card overflow-hidden relative min-h-[500px] flex flex-col justify-center group">
+                            {/* Background Image & Gradient */}
+                            <div className="absolute inset-0 bg-[url('https://cdn.leilos.qzz.io/media/bg1.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0E14] via-[#0B0E14]/60 to-transparent"></div>
+                            
+                            {/* Content */}
+                            <div className="relative z-10 p-8 md:p-12 max-w-2xl">
+                                <div className="flex items-center justify-between mb-2">
+                                    <h2 className="text-5xl font-bold font-display text-white drop-shadow-lg">Fortnite</h2>
+                                    <span className="px-3 py-1 bg-white/10 rounded-full text-xs font-mono text-gray-400 border border-white/5 backdrop-blur-md">v28.30</span>
                                 </div>
                                 
-                                {/* Right Side: Content */}
-                                <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h2 className="text-4xl font-bold font-display text-white">Fortnite</h2>
-                                        <span className="px-3 py-1 bg-white/10 rounded-full text-xs font-mono text-gray-400 border border-white/5">v28.30</span>
-                                    </div>
-                                    
-                                    <p className="text-gold-primary font-medium tracking-widest text-sm uppercase mb-4 font-display">Capítulo 5 - Temporada 1</p>
-                                    
-                                    {/* Description Added as Requested */}
-                                    <div className="mb-8 p-4 bg-white/5 rounded-xl border border-white/5">
-                                        <p className="text-gray-300 text-sm leading-relaxed">
-                                            Esta versión fue lanzada en <span className="text-white font-bold">Febrero 2024</span>. 
-                                            La Temporada 28 (Subterránea) terminó en <span className="text-white font-bold">Marzo 2024</span>.
-                                            Experimenta el mapa y las armas clásicas exactamente como eran.
-                                        </p>
-                                    </div>
-                                    
-                                    <div className="flex gap-4 mb-8">
-                                        <button 
-                                            onClick={handleStartDownload}
-                                            disabled={downloadProgress?.state === 'downloading' || downloadProgress?.state === 'extracting'}
-                                            className="w-full bg-gold-primary text-bg-dark px-8 py-4 rounded-xl font-bold hover:bg-gold-highlight transition-all duration-300 font-display tracking-widest disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transform hover:-translate-y-1"
-                                        >
-                                            {downloadProgress?.state === 'downloading' ? 'DESCARGANDO...' : 
-                                             downloadProgress?.state === 'extracting' ? 'EXTRAYENDO...' : 'INSTALAR JUEGO'}
-                                        </button>
-                                    </div>
+                                <div className="flex items-center gap-3 mb-8">
+                                    <span className="text-gold-primary font-medium tracking-widest text-sm uppercase font-display drop-shadow-md">Capítulo 5</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                                    <span className="text-gray-300 font-medium tracking-widest text-sm uppercase font-display drop-shadow-md">Temporada 1</span>
+                                </div>
+                                
+                                <div className="mb-10 p-6 bg-black/40 rounded-2xl border border-white/5 backdrop-blur-sm shadow-xl">
+                                    <p className="text-gray-200 text-sm leading-relaxed font-medium">
+                                        La temporada comenzó el <span className="text-white font-bold">3 de diciembre de 2023</span> y concluyó el <span className="text-white font-bold">8 de marzo de 2024</span>. 
+                                        Experimenta el mapa y las armas clásicas exactamente como eran.
+                                    </p>
+                                </div>
+                                
+                                <div className="flex gap-4 mb-8">
+                                    <button 
+                                        onClick={handleStartDownload}
+                                        disabled={downloadProgress?.state === 'downloading' || downloadProgress?.state === 'extracting'}
+                                        className="w-full md:w-auto bg-gold-primary text-bg-dark px-10 py-4 rounded-xl font-bold hover:bg-gold-highlight transition-all duration-300 font-display tracking-widest disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transform hover:-translate-y-1 border border-gold-primary/20 min-w-[240px]"
+                                    >
+                                        {downloadProgress?.state === 'downloading' ? 'DESCARGANDO...' : 
+                                         downloadProgress?.state === 'extracting' ? 'EXTRAYENDO...' : 'INSTALAR JUEGO'}
+                                    </button>
+                                </div>
 
-                                    {downloadProgress && (
-                                        <div className="bg-black/30 p-4 rounded-xl border border-white/5">
-                                            <div className="flex justify-between mb-2 text-sm font-display tracking-wide">
-                                                <span className="capitalize text-gray-300">{downloadProgress.state}</span>
-                                                <span className="text-gold-primary">{downloadProgress.percent}%</span>
-                                            </div>
-                                            <div className="w-full bg-black/50 h-2 rounded-full overflow-hidden border border-white/5">
-                                                <div 
-                                                    className="bg-gold-primary h-full transition-all duration-300 shadow-[0_0_10px_rgba(212,175,55,0.5)]" 
-                                                    style={{ width: `${downloadProgress.percent}%` }}
-                                                ></div>
-                                            </div>
-                                            <div className="mt-2 text-xs text-gray-500 text-right font-mono">
-                                                {(downloadProgress.downloaded / 1024 / 1024).toFixed(2)} MB / {(downloadProgress.total / 1024 / 1024).toFixed(2)} MB
+                                {downloadProgress && (
+                                    <div className="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
+                                        <div className="flex justify-between mb-3 text-sm font-display tracking-wide">
+                                            <span className="capitalize text-gray-300 flex items-center gap-2">
+                                                {downloadProgress.state === 'downloading' && <span className="animate-pulse text-gold-primary">●</span>}
+                                                {downloadProgress.state}
+                                            </span>
+                                            <span className="text-gold-primary font-bold">{downloadProgress.percent}%</span>
+                                        </div>
+                                        <div className="w-full bg-black/50 h-3 rounded-full overflow-hidden border border-white/5">
+                                            <div 
+                                                className="bg-gradient-to-r from-gold-primary to-gold-highlight h-full transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.5)] relative" 
+                                                style={{ width: `${downloadProgress.percent}%` }}
+                                            >
+                                                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                                             </div>
                                         </div>
-                                    )}
-                                </div>
+                                        <div className="mt-3 text-xs text-gray-400 text-right font-mono flex justify-end gap-2">
+                                            <span>{(downloadProgress.downloaded / 1024 / 1024).toFixed(2)} MB</span>
+                                            <span className="text-gray-600">/</span>
+                                            <span>{(downloadProgress.total / 1024 / 1024).toFixed(2)} MB</span>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

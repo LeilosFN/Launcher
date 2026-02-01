@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api';
 import { useUserStore } from '../stores/userStore';
 import { useConfigStore } from '../stores/configStore';
 import { useGameStore, LaunchStatus } from '../stores/gameStore';
+import { RpcStart } from '../utils/rpc';
 
 interface LaunchButtonProps {
     onStatusChange?: (status: LaunchStatus) => void;
@@ -21,6 +22,17 @@ const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
     };
 
     const handleLaunch = async () => {
+        if (status === 'RUNNING') {
+            // Since process monitoring is disabled, we treat "STOP GAME" as resetting the launcher state
+            updateStatus('IDLE');
+            RpcStart({ 
+                state: "In Launcher", 
+                details: "Leilos V2", 
+                enable_timer: true 
+            }).catch(console.error);
+            return;
+        }
+
         if (!fortnitePath) {
             alert('Please select Fortnite installation path in Settings');
             return;
@@ -48,6 +60,7 @@ const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
 
             if (result) {
                 updateStatus('RUNNING');
+                RpcStart({ details: "Playing Fortnite", state: "In Game", enable_timer: true }).catch(console.error);
                 // Status will be reset to IDLE when 'game-exited' event is received
             } else {
                 updateStatus('ERROR');
