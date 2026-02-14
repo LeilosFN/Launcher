@@ -30,7 +30,7 @@ npm install
 
 3. Asegúrate de tener los DLLs necesarios en la carpeta `dlls/`:
    - `Lelilos_Client.dll` - Unreal Engine patcher
-   - `Leilos_Autenticator.dll` - Para autenticación (Gracias a @plooshi)
+   - `Tellurium.dll` - Para autenticación (Gracias a @plooshi)
 
 ## Desarrollo
 
@@ -57,8 +57,8 @@ El ejecutable se generará en `src-tauri/target/release/bundle/`.
 ### URLs del Backend
 
 Por defecto, el launcher se conecta a:
-- Backend: `https://launcher.leilos.qzz.io`
-- Host: `https://launcher.leilos.qzz.io:7777`
+- Backend: `http://leilos.leilos.qzz.io:80`
+- Host: `http://leilos.leilos.qzz.io:7777`
 
 Puedes cambiar estas URLs en el menú de Settings del launcher.
 
@@ -82,7 +82,7 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 
 ### Error de autenticación
 - Verifica tus credenciales
-- Comprueba que el backend en `https://launcher.leilo.qzz.io` esté accesible
+- Comprueba que el backend en `leilos.leilo.qzz.io:80` esté accesible
 
 ## Tecnologías Utilizadas
 
@@ -95,7 +95,5 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 ## Licencia
 
 Al usar este codigo estas obligado a decir que yo lo he hecho eh :D
-
-
 
 
