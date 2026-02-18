@@ -94,13 +94,3 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 ## Tecnologías Utilizadas
 
 - **Frontend**: React + TypeScript + TailwindCSS
-- **Backend**: Rust + Tauri
-- **State Management**: Zustand
-- **Animations**: Framer Motion
-- **HTTP Client**: Axios
-
-
-
-
-
-
