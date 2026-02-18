@@ -75,12 +75,12 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 ## Troubleshooting
 
 ### Si te aparece una pantalla de que el juego debes de haceer eso:
-1º _Ve a la carpeta del launcher_
-2º _Cambia el nombre de la carpeta `dlls/`_
-3º _Abre el launcher e Inicia el juego_
-4º _Espera asta que te ponga que no se pudo iniciar sesion y ahi le das en el launcher  `Cerrar Juego`_
-5º _Vuelve a cambiar el nombre de la carpeta que cambiaste el nombre y vuelve a ponerle el nombre  `dlls/`_
-6º _Y ya esta_
+- 1 _Ve a la carpeta del launcher_
+- 2 _Cambia el nombre de la carpeta `dlls/`_
+- 3 _Abre el launcher e Inicia el juego_
+- 4 _Espera asta que te ponga que no se pudo iniciar sesion y ahi le das en el launcher  `Cerrar Juego`_
+- 5 _Vuelve a cambiar el nombre de la carpeta que cambiaste el nombre y vuelve a ponerle el nombre  `dlls/`_
+- 6 _Y ya esta_
 
 ### El juego no inicia
 - Verifica que la ruta de Fortnite sea correcta
@@ -98,6 +98,7 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 - **State Management**: Zustand
 - **Animations**: Framer Motion
 - **HTTP Client**: Axios
+
 
 
 
