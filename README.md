@@ -19,7 +19,7 @@ Launcher oficial de Leilos built con Tauri + React + TypeScript.
 1. Clona el repositorio:
 ```bash
 git clone https://github.com/LeilosFN/launcher.git
-cd leilos-launcher-beta
+cd launcher-main
 ```
 
 2. Instala las dependencias:
@@ -55,8 +55,8 @@ El ejecutable se generará en `src-tauri/target/release/bundle/`.
 ### URLs del Backend
 
 Por defecto, el launcher se conecta a:
-- Backend: `https://launcher.leilos.qzz.io:443`
-- Host: `http://**.leilos.qzz.io:7777`
+- Backend: `https://api.leilos.qzz.io:443`
+- Host: `http://*.leilos.qzz.io:7777`
 
 Puedes cambiar estas URLs en el menú de Settings del launcher.
 
@@ -88,7 +88,7 @@ En la primera ejecución, deberás seleccionar la carpeta ROOT de tu instalació
 
 ### Error de autenticación
 - Verifica tus credenciales
-- Comprueba que el backend en `launcher.leilo.qzz.io` esté accesible
+- Comprueba que el backend en `api.leilos.qzz.io` esté accesible
 
 ## Tecnologías Utilizadas
 

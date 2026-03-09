@@ -124,7 +124,7 @@ ipcMain.handle('launch', async (_, fortnitePath, user) => {
       `-AUTH_LOGIN=${email}`,
       `-AUTH_PASSWORD=${password}`,
       '-AUTH_TYPE=epic',
-      '-backend=http://launcher.leilos.qzz.io:80',
+      '-backend=https://api.leilos.qzz.io',
     ];
 
     // 3. Launch
