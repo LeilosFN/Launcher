@@ -127,7 +127,7 @@ fn clear_rpc(state: State<RwLock<RpcClient>>) -> Result<(), String> {
 
 #[tauri::command]
 async fn install_game(window: Window, install_path: String) -> Result<(), String> {
-    let url = "https://launcher.leilos.qzz.io:8443/28.30.7z".to_string();
+    let url = "https://r2.ploosh.dev/24.20.zip".to_string();
     downloader::download_and_install(window, url, install_path).await
 }
 

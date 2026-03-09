@@ -249,6 +249,9 @@ pub async fn launch(
         Ok(pid) => {
             log_to_file(&format!("Game launched! PID: {}", pid));
             let _ = window.minimize();
+            
+            // Notificar al usuario que el juego se está iniciando (Solicitado por el usuario)
+             let _ = window.emit("game-launching", "gameLaunching");
 
             // 7. Inject DLLs
             let injector = DllInjector::new();
@@ -387,34 +390,6 @@ pub async fn kill_fortnite_processes(window: Window) -> Result<bool, String> {
     ];
     let _ = process::kill_all(&processes_to_kill);
 
-    // Try to resolve the resource path first (production mode)
-    let resource_path = window.app_handle().path_resolver().resolve_resource("cmd/kill.bat");
-    
-    // Fallback to absolute dev path if resource resolution fails
-    let dev_path = PathBuf::from(r"c:\Users\Crisu\Desktop\Leilos\LEILOS_REBUILD_STATUS_TRUE\launcher-v2-main\src-tauri\cmd\kill.bat");
-    
-    let bat_path_buf = if let Some(path) = resource_path {
-        if path.exists() {
-            path
-        } else {
-            dev_path
-        }
-    } else {
-        dev_path
-    };
-
-    if bat_path_buf.exists() {
-        log_to_file(&format!("Executing kill script: {:?}", bat_path_buf));
-        std::process::Command::new("cmd")
-            .args(&["/C", bat_path_buf.to_str().unwrap()])
-            .creation_flags(0x08000000) 
-            .spawn()
-            .map_err(|e| format!("Failed to execute kill script: {}", e))?;
-    } else {
-        log_to_file("Warning: kill.bat not found in resources or dev path");
-        return Err("kill.bat not found".to_string());
-    }
-        
     Ok(true)
 }
 

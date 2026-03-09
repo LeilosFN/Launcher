@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Leilos Launcher",
-        "version": "1.1.1"
+        "version": "1.1.2"
     },
     "tauri": {
         "allowlist": {
@@ -21,10 +21,8 @@
             "http": {
                 "all": true,
                 "scope": [
-                    "https://leilos.leilos.qzz.io/*",
-                    "https://cdn.leilos.qzz.io/*",
-                    "http://launcher.leilos.qzz.io:80/*",
-                    "http://launcher.leilos.qzz.io:8443/*"
+                    "https://api.leilos.qzz.io/*",
+                    "https://cdn.leilos.qzz.io/*"
                 ]
             },
             "fs": {
@@ -38,8 +36,8 @@
             {
                 "fullscreen": false,
                 "maximizable": false,
-                "resizable": false,
-                "title": "Leilos Launcher",
+                "resizable": true,
+                "title": "Leilos",
                 "decorations": false,
                 "center": true,
                 "transparent": true,
@@ -55,7 +53,7 @@
         "bundle": {
             "active": true,
             "targets": "all",
-            "identifier": "site.leilos",
+            "identifier": "leilos.tf",
             "icon": [
                 "icons/32x32.png",
                 "icons/128x128.png",
@@ -64,8 +62,7 @@
                 "icons/icon.ico"
             ],
             "resources": [
-                "dlls",
-                "cmd"
+                "dlls"
             ],
             "windows": {
                 "certificateThumbprint": null,
