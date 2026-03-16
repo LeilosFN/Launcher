@@ -1,6 +1,7 @@
 import React from 'react';
 import { appWindow } from '@tauri-apps/api/window';
 import Sidebar from './Sidebar';
+import { useTranslation } from '../utils/translations';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -9,6 +10,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, currentView, onChangeView }) => {
+    const { t } = useTranslation();
     return (
         <div className="flex w-full h-screen bg-bg-dark overflow-hidden text-white font-sans selection:bg-gold-primary selection:text-black">
             <Sidebar currentView={currentView} onChangeView={onChangeView} />
@@ -19,14 +21,14 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onChangeView }) 
                         <button 
                             onClick={() => appWindow.minimize()}
                             className="p-2 text-gray-500 hover:text-white hover:bg-white/10 rounded transition-colors"
-                            title="Minimize"
+                            title={t('nav.minimize')}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                         <button 
                             onClick={() => appWindow.close()}
                             className="p-2 text-gray-500 hover:text-white hover:bg-red-500/80 rounded transition-colors"
-                            title="Close"
+                            title={t('nav.close')}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         </button>

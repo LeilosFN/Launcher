@@ -80,7 +80,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                             value={localDiscordId}
                             onChange={(e) => setLocalDiscordId(e.target.value)}
                             className="w-full bg-black/40 border border-white/5 rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold-primary/50 focus:bg-black/60 focus:ring-1 focus:ring-gold-primary/20 transition-all outline-none placeholder:text-gray-700 font-mono"
-                            placeholder="Tu ID de Discord"
+                            placeholder={t('login.email')}
                             autoFocus
                         />
                     </div>
@@ -102,7 +102,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         className="w-full glass-button text-[#5865F2] hover:bg-[#5865F2]/10 hover:border-[#5865F2]/40 font-bold py-3 rounded-xl transition-all duration-300 font-display tracking-widest uppercase text-xs flex items-center justify-center gap-2 group"
                     >
                         <i className="fa-brands fa-discord text-lg group-hover:scale-110 transition-transform"></i>
-                        <span>Gestionar Cuenta</span>
+                        <span>{t('login.register')}</span>
                     </button>
                     
                     <p className="mt-4 text-[9px] text-center text-gray-700 uppercase tracking-[0.2em] font-display">

@@ -7,13 +7,17 @@ const translations = {
             subtitle: 'Bienvenido a Leilos',
             email: 'Ingresa tu ID de Discord',
             button: 'Entrar',
+            register: 'REGÍSTRATE O ACCEDE A TU CUENTA',
             footer: 'Protegido por Seguridad Leilos',
             error: 'Por favor ingresa tu ID de Discord'
         },
         nav: {
             home: 'Inicio',
             settings: 'Ajustes',
-            download: 'Descargar'
+            download: 'Descargar',
+            logout: 'Cerrar Sesión',
+            minimize: 'Minimizar',
+            close: 'Cerrar'
         },
         home: {
             systemStatus: 'Estado del Sistema',
@@ -71,13 +75,17 @@ const translations = {
             subtitle: 'Welcome to Leilos',
             email: 'Enter your Discord ID',
             button: 'Login',
+            register: 'REGISTER OR ACCESS YOUR ACCOUNT',
             footer: 'Protected by Leilos Security',
             error: 'Please enter your Discord ID'
         },
         nav: {
             home: 'Home',
             settings: 'Settings',
-            download: 'Download'
+            download: 'Download',
+            logout: 'Logout',
+            minimize: 'Minimize',
+            close: 'Close'
         },
         home: {
             systemStatus: 'System Status',
