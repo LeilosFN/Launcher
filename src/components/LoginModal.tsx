@@ -4,6 +4,8 @@ import { useUserStore } from '../stores/userStore';
 import { useConfigStore } from '../stores/configStore';
 import { useTranslation } from '../utils/translations';
 
+import { useGameStore } from '../stores/gameStore';
+
 interface LoginModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -14,6 +16,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     const { language, setLanguage } = useConfigStore();
     const { t } = useTranslation();
     const [localDiscordId, setLocalDiscordId] = useState(discordId || '');
+    const { setErrorMsg } = useGameStore();
 
     if (!isOpen) return null;
 
@@ -21,7 +24,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         e.preventDefault();
 
         if (!localDiscordId) {
-            alert(t('login.error'));
+            setErrorMsg(t('login.error'));
             return;
         }
 

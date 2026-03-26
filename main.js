@@ -11,7 +11,7 @@ function createWindow() {
     height: 700,
     minWidth: 900,
     minHeight: 600,
-    title: 'Leilos Launcher',
+    title: 'Leilos',
     frame: true, // Keep standard frame for now, or false for custom drag
     backgroundColor: '#121212',
     webPreferences: {

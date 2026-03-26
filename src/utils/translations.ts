@@ -34,10 +34,12 @@ const translations = {
             error: 'ERROR - REINTENTAR',
             account: 'CUENTA',
             online: 'EN LÍNEA',
-            operational: 'OPERATIVO',
-            issues: 'PROBLEMAS DETECTADOS',
+            issues: 'REVISANDO SISTEMA...',
             loading: 'Cargando servicios...',
-            loadingSystem: 'CARGANDO SISTEMA...'
+            loadingSystem: 'CARGANDO SISTEMA...',
+            errorDetected: 'ERROR DETECTADO',
+            accept: 'ACEPTAR',
+            versionError: 'La versión seleccionada no es compatible. Por favor, selecciona la carpeta de Fortnite versión v28.30 exacta.'
         },
         settings: {
             title: 'Configuración',
@@ -102,10 +104,12 @@ const translations = {
             error: 'ERROR - RETRY',
             account: 'ACCOUNT',
             online: 'ONLINE',
-            operational: 'OPERATIONAL',
-            issues: 'ISSUES DETECTED',
+            issues: 'CHECKING SYSTEM...',
             loading: 'Loading services...',
-            loadingSystem: 'LOADING SYSTEM...'
+            loadingSystem: 'LOADING SYSTEM...',
+            errorDetected: 'ERROR DETECTED',
+            accept: 'ACCEPT',
+            versionError: 'The selected version is not compatible. Please select the exact Fortnite v28.30 folder.'
         },
         settings: {
             title: 'Settings',

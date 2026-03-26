@@ -11,7 +11,7 @@ interface LaunchButtonProps {
 }
 
 const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
-    const { status, setStatus } = useGameStore();
+    const { status, setStatus, setErrorMsg } = useGameStore();
     const [manualCode, setManualCode] = useState('');
     const [showInput, setShowInput] = useState(false);
     const { email, password } = useUserStore();
@@ -37,13 +37,13 @@ const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
                 }).catch(console.error);
             } catch (error) {
                 console.error('Failed to close game:', error);
-                alert(`Failed to close game: ${error}`);
+                setErrorMsg(`Failed to close game: ${error}`);
             }
             return;
         }
 
         if (!fortnitePath) {
-            alert(t('settings.gamePath') + ' ' + t('settings.notSelected'));
+            setErrorMsg(t('settings.gamePath') + ' ' + t('settings.notSelected'));
             return;
         }
 
@@ -51,7 +51,7 @@ const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
             // Re-verify version before launching
             const isCorrectVersion = await invoke<boolean>('check_fortnite_version', { path: fortnitePath });
             if (!isCorrectVersion) {
-                alert('Error: La versión actual de Fortnite no es compatible. Este launcher solo es compatible con la versión v28.30 exacta.');
+                setErrorMsg(t('home.versionError'));
                 return;
             }
 
@@ -78,7 +78,7 @@ const LaunchButton: React.FC<LaunchButtonProps> = ({ onStatusChange }) => {
             }
         } catch (error) {
             console.error('Launch error:', error);
-            alert(`Launch error: ${error}`);
+            setErrorMsg(`Launch error: ${error}`);
             updateStatus('ERROR');
         }
     };

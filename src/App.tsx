@@ -9,6 +9,7 @@ import { useTranslation } from './utils/translations';
 import Layout from './components/Layout';
 import LaunchButton from './components/LaunchButton';
 import LoginModal from './components/LoginModal';
+import ErrorModal from './components/ErrorModal';
 import Particles from './components/Global/Particles';
 import { useUserStore } from './stores/userStore';
 import { useConfigStore } from './stores/configStore';
@@ -37,7 +38,7 @@ interface UserLoginPayload {
 
 const App: React.FC = () => {
     const [currentView, setCurrentView] = useState('home');
-    const [appVersion, setAppVersion] = useState<string>('1.1.2');
+    const [appVersion, setAppVersion] = useState<string>('1.1.3');
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [downloadProgress, setDownloadProgress] = useState<DownloadState | null>(null);
     const [serverData, setServerData] = useState<{ status: boolean; services?: Service[]; news?: { title: string; content: string; date: string } } | null>(null);
@@ -123,8 +124,16 @@ const App: React.FC = () => {
                     newsData = newsData[0];
                 }
 
+                // Determine overall status
+                let isOverallOk = false;
+                if (statusJson.status !== undefined) {
+                    isOverallOk = statusJson.status === true || statusJson.status === 'true';
+                } else if (statusJson.services && Array.isArray(statusJson.services)) {
+                    isOverallOk = statusJson.services.every((s: any) => s.color === 'green' || s.status === 'OK');
+                }
+
                 setServerData({
-                    status: statusJson.status === true || statusJson.status === 'true',
+                    status: isOverallOk,
                     services: statusJson.services,
                     news: newsData
                 });
@@ -136,6 +145,22 @@ const App: React.FC = () => {
         };
 
         fetchData();
+
+        // Ping backend every 5 seconds as requested
+        const pingInterval = setInterval(async () => {
+            try {
+                const response = await fetch('https://api.leilos.qzz.io/account/api/public/discovery', {
+                    method: 'GET',
+                    mode: 'no-cors' // Use no-cors to avoid preflight if only checking connectivity
+                });
+                // If the request completes (even with opaque response in no-cors), the server is reachable
+                setServerData(prev => prev ? { ...prev, status: true } : { status: true });
+            } catch (error) {
+                console.error('Ping failed:', error);
+                setServerData(prev => prev ? { ...prev, status: false } : { status: false });
+            }
+        }, 5000);
+
         // getVersion().then(setAppVersion).catch(() => {}); // Moved inside fetchData to sync with version check
 
         const { setStatus } = useGameStore.getState();
@@ -208,6 +233,7 @@ const App: React.FC = () => {
             unlistenStatus.then(f => f());
             unlistenDownload.then(f => f());
             clearInterval(intervalId);
+            clearInterval(pingInterval);
         };
     }, []);
 
@@ -218,7 +244,7 @@ const App: React.FC = () => {
                 // Check if the selected path contains Fortnite v28.30
                 const isCorrectVersion = await invoke<boolean>('check_fortnite_version', { path });
                 if (!isCorrectVersion) {
-                    alert('Error: La versión seleccionada no es compatible. Por favor, selecciona la carpeta de Fortnite versión v28.30 exacta.');
+                    useGameStore.getState().setErrorMsg(t('home.versionError'));
                     return;
                 }
                 setFortnitePath(path);
@@ -325,9 +351,6 @@ const App: React.FC = () => {
                                         <i className="fa-solid fa-server text-gold-primary"></i>
                                         {t('home.systemStatus')}
                                     </h3>
-                                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${serverData?.status ? 'text-green-400 border-green-500/30 bg-green-500/5' : 'text-red-400 border-red-500/30 bg-red-500/5'}`}>
-                                        {serverData?.status ? t('home.operational') : t('home.issues')}
-                                    </span>
                                 </div>
                                 <div className="relative h-10 flex items-center overflow-hidden bg-white/5 border border-white/5 rounded-xl px-4">
                                     {serverData?.services && serverData.services.length > 0 ? (
@@ -339,7 +362,6 @@ const App: React.FC = () => {
                                                 <span className={`w-2 h-2 rounded-full ${serverData.services[currentServiceIndex].color === 'green' ? 'bg-green-500 shadow-[0_0_8px_lime]' : serverData.services[currentServiceIndex].color === 'red' ? 'bg-red-500' : 'bg-yellow-500'}`}></span>
                                                 <span className="text-sm font-medium text-gray-200">{serverData.services[currentServiceIndex].name}</span>
                                             </div>
-                                            <span className="text-xs font-mono text-white/50 uppercase">{serverData.services[currentServiceIndex].status}</span>
                                         </div>
                                     ) : (
                                         <span className="text-xs text-gray-500 italic">{t('home.loading')}</span>
@@ -599,17 +621,21 @@ const App: React.FC = () => {
                     isOpen={true} 
                     onClose={() => {}} 
                 />
+                <ErrorModal />
             </>
         );
     }
 
     return (
-        <Layout currentView={currentView} onChangeView={setCurrentView}>
-            <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={50} />
-            <div className="relative z-10 w-full h-full">
-                {renderContent()}
-            </div>
-        </Layout>
+        <>
+            <Layout currentView={currentView} onChangeView={setCurrentView}>
+                <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={50} />
+                <div className="relative z-10 w-full h-full">
+                    {renderContent()}
+                </div>
+            </Layout>
+            <ErrorModal />
+        </>
     );
 };
 
