@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Leilos Launcher",
-        "version": "1.1.2"
+        "version": "1.1.3"
     },
     "tauri": {
         "allowlist": {
@@ -36,7 +36,7 @@
             {
                 "fullscreen": false,
                 "maximizable": false,
-                "resizable": true,
+                "resizable": false,
                 "title": "Leilos",
                 "decorations": false,
                 "center": true,
