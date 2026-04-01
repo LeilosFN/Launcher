@@ -51,7 +51,7 @@ const ErrorModal: React.FC = () => {
                 <div className="flex items-center gap-3 opacity-30 group hover:opacity-100 transition-opacity">
                     <img src="https://cdn.leilos.qzz.io/public/media/images/logo/logo.jpg" alt="Logo" className="w-4 h-4 grayscale rounded-sm" />
                     <p className="text-[10px] text-gray-500 font-mono tracking-[0.2em] uppercase">
-                        Leilos Launcher • Seguridad de Sistema
+                        Leilos • Crisutf
                     </p>
                 </div>
             </div>

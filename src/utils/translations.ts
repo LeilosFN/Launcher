@@ -5,11 +5,11 @@ const translations = {
         login: {
             title: 'INICIAR SESIÓN',
             subtitle: 'Bienvenido a Leilos',
-            email: 'Ingresa tu ID de Discord',
+            email: 'Ingresa tu ID de Leilos',
             button: 'Entrar',
             register: 'REGÍSTRATE O ACCEDE A TU CUENTA',
-            footer: 'Protegido por Seguridad Leilos',
-            error: 'Por favor ingresa tu ID de Discord'
+            footer: 'Leilos • Crisutf',
+            error: 'Por favor ingresa tu ID de Leilos',
         },
         nav: {
             home: 'Inicio',
@@ -69,17 +69,21 @@ const translations = {
             title: 'Leilos Launcher',
             gameLaunching: 'Iniciando Juego',
             firstTimeMsg: 'Ten en cuenta que la primera vez puede tardar un poco, ¡la segunda ya será más rápido!'
+        },
+        splash: {
+            verifying: 'Verificando servidores...',
+            loading: 'Cargando juego...'
         }
     },
     en: {
         login: {
             title: 'LOGIN',
             subtitle: 'Welcome to Leilos',
-            email: 'Enter your Discord ID',
+            email: 'Enter your Leilos ID',
             button: 'Login',
             register: 'REGISTER OR ACCESS YOUR ACCOUNT',
-            footer: 'Protected by Leilos Security',
-            error: 'Please enter your Discord ID'
+            footer: 'Leilos • Crisutf',
+            error: 'Please enter your Leilos ID'
         },
         nav: {
             home: 'Home',
@@ -139,6 +143,10 @@ const translations = {
             title: 'Leilos Launcher',
             gameLaunching: 'Starting Game',
             firstTimeMsg: 'Keep in mind that the first time may take a while, the second time will be faster!'
+        },
+        splash: {
+            verifying: 'Verifying servers...',
+            loading: 'Loading game...'
         }
     }
 };

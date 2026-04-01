@@ -8,6 +8,7 @@ import { isPermissionGranted, requestPermission, sendNotification } from '@tauri
 import { useTranslation } from './utils/translations';
 import Layout from './components/Layout';
 import LaunchButton from './components/LaunchButton';
+import SplashScreen from './components/SplashScreen';
 import LoginModal from './components/LoginModal';
 import ErrorModal from './components/ErrorModal';
 import Particles from './components/Global/Particles';
@@ -163,8 +164,18 @@ const App: React.FC = () => {
 
         // getVersion().then(setAppVersion).catch(() => {}); // Moved inside fetchData to sync with version check
 
-        const { setStatus } = useGameStore.getState();
+        const { setStatus, setSplashMessage } = useGameStore.getState();
         
+        // Listen for splash messages
+        const unlistenSplash = listen<string>('splash-message', (event) => {
+            setSplashMessage(event.payload);
+        });
+
+        // Listen for splash close
+        const unlistenSplashClose = listen('splash-close', () => {
+            setSplashMessage(null);
+        });
+
         // Check if game is already running
         invoke<boolean>('check_is_game_running')
             .then(isRunning => {
@@ -232,6 +243,8 @@ const App: React.FC = () => {
             unlistenLaunching.then(f => f());
             unlistenStatus.then(f => f());
             unlistenDownload.then(f => f());
+            unlistenSplash.then(f => f());
+            unlistenSplashClose.then(f => f());
             clearInterval(intervalId);
             clearInterval(pingInterval);
         };
@@ -573,6 +586,7 @@ const App: React.FC = () => {
     if (isOutdated) {
         return (
             <div className="flex h-screen w-screen items-center justify-center bg-black/95 text-white p-6 relative overflow-hidden">
+                <SplashScreen />
                 {/* Background effects */}
                 <div className="absolute inset-0 bg-[url('https://cdn.leilos.qzz.io/public/media/images/logo/logo.jpg')] bg-cover bg-center opacity-20 blur-sm"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
@@ -616,6 +630,7 @@ const App: React.FC = () => {
     if (!email) {
         return (
             <>
+                <SplashScreen />
                 <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={50} />
                 <LoginModal 
                     isOpen={true} 
@@ -628,6 +643,7 @@ const App: React.FC = () => {
 
     return (
         <>
+            <SplashScreen />
             <Layout currentView={currentView} onChangeView={setCurrentView}>
                 <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={50} />
                 <div className="relative z-10 w-full h-full">
