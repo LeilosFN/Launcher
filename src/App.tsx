@@ -39,7 +39,7 @@ interface UserLoginPayload {
 
 const App: React.FC = () => {
     const [currentView, setCurrentView] = useState('home');
-    const [appVersion, setAppVersion] = useState<string>('1.1.3');
+    const [appVersion, setAppVersion] = useState<string>('1.1.4');
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [downloadProgress, setDownloadProgress] = useState<DownloadState | null>(null);
     const [serverData, setServerData] = useState<{ status: boolean; services?: Service[]; news?: { title: string; content: string; date: string } } | null>(null);
