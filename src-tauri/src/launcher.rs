@@ -242,16 +242,21 @@ pub async fn launch(
 
     log_to_file("Starting game process...");
     
+    // Show splash screen messages
+     let _ = window.emit("splash-message", "splash.verifying");
+     tokio::time::sleep(Duration::from_millis(2500)).await;
+     let _ = window.emit("splash-message", "splash.loading");
+     tokio::time::sleep(Duration::from_millis(2500)).await;
+
     // Revert to start_with_args (Normal Launch)
     // Suspended launch causes immediate crash with these specific DLLs/Game version.
     // We use Normal Launch with a minimal delay to satisfy "al instante" request while maintaining stability.
     match process::start_with_args(exe_path, args) {
         Ok(pid) => {
             log_to_file(&format!("Game launched! PID: {}", pid));
-            let _ = window.minimize();
             
             // Notificar al usuario que el juego se está iniciando (Solicitado por el usuario)
-             let _ = window.emit("game-launching", "gameLaunching");
+            let _ = window.emit("game-launching", "gameLaunching");
 
             // 7. Inject DLLs
             let injector = DllInjector::new();
@@ -301,6 +306,10 @@ pub async fn launch(
             log_to_file("Waiting for process to initialize (4s)...");
             tokio::time::sleep(Duration::from_millis(4000)).await;
             
+            // Close splash and minimize after injection is ready or game is starting
+            let _ = window.emit("splash-close", "close");
+            let _ = window.minimize();
+
             // Define remaining DLLs to inject
             let dll_candidates = [
                 ("Leilos_GS.dll", "Leilos_GS.dll"),
